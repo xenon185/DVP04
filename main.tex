@@ -1,0 +1,167 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}			%Sprache auf deutsch setzten
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{caption}
+\usepackage{graphicx}				%für das Einfügen von Bildern
+\usepackage{subfigure}
+\usepackage{tabularx, booktabs}
+\usepackage{trfsigns}
+\usepackage{scrpage2}
+\usepackage{ngerman}
+\usepackage{german}
+\usepackage{setspace}				%Für den Abstand der einzelnen Zeilen
+\usepackage{rotating}
+\usepackage{comment}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{float}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{hyperref}
+
+\usepackage{pgfplots}
+\usepackage{nameref}
+
+
+\usepackage{color}
+\definecolor{DarkPurple}{rgb}{0.4,0.1,0.4}
+\definecolor{LightLime}{rgb}{0.3,0.5,0.4}
+\definecolor{Blue}{rgb}{0.0,0.0,1.0}
+
+\usepackage{listings}
+%\usepackage{beramono}						% Text im Codebereich
+\lstdefinestyle{matlab}
+{
+language=Matlab,
+columns=flexible,
+belowcaptionskip=1\baselineskip,
+numbers=left,
+xleftmargin=\parindent,
+frame=single,
+breaklines=true,
+frameround=tttt,
+showstringspaces=false,						% 
+basicstyle=\footnotesize\ttfamily,			% Schriftgröße verkleiner, weichere Darstellung
+keywordstyle=\bfseries\color{DarkPurple},	% Farbe für while, for, etc.
+commentstyle=\itshape\color{LightLime},		% Farbe für Kommentare
+stringstyle=\color{Blue},					% Farbe für Strings
+captionpos=b                    			% sets the caption-position to bottom
+}
+
+\lstdefinestyle{c}
+{
+	language=C,
+	columns=flexible,
+	belowcaptionskip=1\baselineskip,
+	numbers=left,
+	xleftmargin=\parindent,
+	frame=single,
+	breaklines=true,
+	frameround=tttt,
+	showstringspaces=false,						% 
+	basicstyle=\footnotesize\ttfamily,			% Schriftgröße verkleiner, weichere Darstellung
+	keywordstyle=\bfseries\color{DarkPurple},	% Farbe für while, for, etc.
+	commentstyle=\itshape\color{LightLime},		% Farbe für Kommentare
+	stringstyle=\color{Blue},					% Farbe für Strings
+	captionpos=b                    			% sets the caption-position to bottom
+}
+
+
+\usepackage[top=1.3in, bottom=1.3in, left=1in, right=1in]{geometry}
+
+\begin{document}
+		
+		\begin{titlepage}
+				
+				\begin{center}
+						
+						\includegraphics[width=0.5\textwidth]{HawLogo.png}
+						\\[1.5cm]
+						\LARGE Digitale Signalverarbeitung
+						
+						\newcommand{\HRule}{\rule{\linewidth}{0.5 mm}}
+						\HRule \\[0.3cm]
+						{\huge \bfseries Labor Nr. 3: FIR Filter} \\[0.3cm]
+						\HRule \\[1.5cm]
+						
+						\begin{minipage}{0.4\textwidth}
+								\begin{flushleft}
+										\large \emph{Autoren:}\\
+										Tommy \textsc{Jahnke}\\
+										Nils \textsc{Parche}
+									\end{flushleft}
+							\end{minipage}
+						\hfill
+						\begin{minipage}{0.4\textwidth}
+								\begin{flushright}
+										\large \emph{Professor:}\\
+										Prof. Dr. \textsc{Vollmer}
+										
+									\end{flushright}
+							\end{minipage}
+						
+						%\begin{flushleft}
+						%	\begin{minipage}{0.4\textwidth}
+						%		\large \emph Gruppenmitglieder:\\
+						%		J. Sebastian \textsc{Frisch}
+						%	\end{minipage}
+						%\end{flushleft}
+						\vfill
+						
+						{\large \today}
+					\end{center}
+				
+			\end{titlepage}
+		
+		\newpage
+		\setcounter{page}{1}
+		\pagenumbering{roman}
+		%\listoffigures
+		
+		%\newpage
+		%\listoftables
+		
+		\newpage
+		\pagenumbering{arabic}
+		%\clearpage
+		%\thispagestyle{empty}
+		%\phantom{a}
+		%\vfill
+		%\newpage
+		%\addtocounter{page}{-2} %Zählt blank page und Inhalt nicht mit in Nummerierung
+		
+		\pagestyle{scrheadings} %Hier ohne Seitenzahl
+		\setheadsepline{0.4pt}	
+		\ihead{Jahnke/Parche}
+		\ohead{\includegraphics[width=0.215\textwidth]{HawLogo.png}}
+		\setfootsepline{0.4pt}
+		\ifoot{\today}
+		
+		\tableofcontents
+		\newpage
+		\newpage
+		
+		\setcounter{page}{1}
+		
+		\pagestyle{scrheadings} %Hier mit Seitenzahl
+		\setheadsepline{0.4pt}	
+		\ihead{Jahnke/Parche}
+		\ohead{\includegraphics[width=0.215\textwidth]{HawLogo.png}}
+		\setfootsepline{0.4pt}
+		\ifoot{\today}
+		\ofoot{\pagemark}
+		
+		\include{Inhalt}
+		\include{Attachement}
+		\include{Fazit}
+		\include{Anhang}
+	
+	%	\bibliography{bibfile}{}
+	%	\bibliographystyle{plain}
+		
+	
+
+\end{document}

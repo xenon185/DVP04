@@ -1,0 +1,1 @@
+"./get_started.obj" "./biquad.obj" "./DSK_vectors_AIC23.obj" "../C6713dsk_AIC23.cmd" -l"libc.a" 
