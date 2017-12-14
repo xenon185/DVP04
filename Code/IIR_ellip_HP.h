@@ -1,0 +1,10 @@
+#define N_IIR_ELLIP_HP 3
+#define ORDER_ELLIP_HP 2
+#define VALUE 3
+
+short B_ELLIP_HP[N_IIR__ELLIP_HP][VALUE]= {
+{  15163, -28936,  15163},
+{  15163, -23420,  15163}};
+short A_ELLIP_HP[N_IIR__ELLIP_HP][VALUE]= {
+{  32768,  -8557,   3243},
+{  32768, -18304,  20474}};
