@@ -1,0 +1,12 @@
+#define N_IIR_CHEBY1_LP 3
+#define ORDER_CHEBY1_LP 3
+#define VALUE 3
+
+short B_CHEBY_LP[N_IIR__ELLIP_LP][VALUE]= {
+{   9769,  19604,   9836},
+{   9769,  19537,   9769},
+{   9769,  19470,   9702}};
+short A_CHEBY_LP[N_IIR__ELLIP_LP][VALUE]= {
+{  32768, -12930,   2880},
+{  32768,  -3125,  11446},
+{  32768,   6767,  24451}};

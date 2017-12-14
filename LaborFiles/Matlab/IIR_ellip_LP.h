@@ -1,0 +1,10 @@
+#define N_IIR_ELLIP_LP 3
+#define ORDER_ELLIP_LP 2
+#define VALUE 3
+
+short B_ELLIP_LP[N_IIR__ELLIP_LP][VALUE]= {
+{  14381,  27227,  14381},
+{  14381,  21245,  14381}};
+short A_ELLIP_LP[N_IIR__ELLIP_LP][VALUE]= {
+{  32768,   5801,   2988},
+{  32768,  14455,  20231}};
