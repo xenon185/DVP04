@@ -357,9 +357,9 @@ fclose(filnam);
 
 %% Zeit Simulation
 
-fs = 8000;
+Fs = 8000;
 Ns = 256;
-t =0:1/ fs :(1/ fs )*(Ns -1);
+t =0:1/ Fs :(1/ Fs )*(Ns -1);
 x_n = 0;
 x_n = x_n + 0.2 * cos (2* pi* 500 *t);
 x_n = x_n + 0.2 *cos (2* pi* 1250 *t);
@@ -367,39 +367,52 @@ x_n = x_n + 0.2 *cos (2* pi* 2000 *t);
 x_n = x_n + 0.2 *cos (2* pi* 2500 *t);
 x_n = x_n + 0.2 *cos (2* pi* 3500 *t);
 % convert H(z) to equivalent second - order section representation
-[sos_sim ,g_sim] = tf2sos (b_ellip_HP,a_ellip_HP);
-% filter with cascaded filter
-y_n = x_n;
-for i=1: size (sos_sim ,1)
-y_n = filter (sos_sim(i ,1:3) , sos_sim(i ,4:6) , y_n );
-end
-y_n = y_n*g_sim;
-% original filter to compare with cascaded filter
-y_n2 = x_n;
-y_n2 = filter (b_ellip_HP,a_ellip_HP, y_n2 );
+% [sos_sim ,g_sim] = tf2sos (b_ellip_HP,a_ellip_HP);
+% % filter with cascaded filter
+% y_n = x_n;
+% for i=1: size (sos_sim ,1)
+% y_n = filter (sos_sim(i ,1:3) , sos_sim(i ,4:6) , y_n );
+% end
+% y_n = y_n*g_sim;
+% % original filter to compare with cascaded filter
+%y_n2 = x_n;
+
+y_n1 = filter (b_ellip_LP,a_ellip_LP, x_n );
+y_n2 = filter (b_cheby1_LP ,a_cheby1_LP, x_n );
+y_n3 = filter (b_ellip_HP,a_ellip_HP, x_n );
+
 %%
 figure (7);
 % input signal
 plot (t,x_n );
 grid on;
-title (' Eingangssignal ');
+title (' Eingangssignal x_n ');
 xlabel ('Zeit  (s)');
 %%
 figure (8);
-% filtered with original filter
-plot (t, y_n2 );
+% filtered with ellip lp filter
+plot (t, y_n1 );
 grid on;
-title (' Ausgangssignal   nach   direkter   Filterung ');
+title ('Ausgangssignal ELLIP LP Kaskade');
 xlabel ('Zeit  (s)');
 %%
 figure (9);
 % filtered with cascade - filter
-plot (t,y_n );
+plot (t,y_n2 );
 grid on;
-title (' Ausgangssignal   nach   kaskadierter   Filterung ');
+title ('Ausgangssignal ECHEBY LP Kaskade');
 xlabel ('Zeit  (s)');
+
 %%
 figure (10);
+% filtered with cascade - filter
+plot (t,y_n3 );
+grid on;
+title ('Ausgangssignal ELLIP HP Kaskade');
+xlabel ('Zeit  (s)');
+
+%%
+figure (11);
 % input spectrum
 xfftmag =( abs(fft(x_n ,Ns ))); % Compute spectrum of input signal .
 xfftmagh = xfftmag (1: length ( xfftmag )/2);
@@ -410,22 +423,33 @@ grid on;
 title (' Eingangsspektrum ');
 xlabel ('freq  (Hz)');
 %%
-figure (11);
+figure (12);
 % filtered with original filter
+yfftmag =( abs(fft(y_n1 ,Ns )));
+yfftmagh = yfftmag (1: length ( yfftmag )/2);
+% Plot only the first half of FFT , since second half is mirror image
+plot (f, yfftmagh ); % Plot frequency spectrum of input signal
+grid on;
+title (' Ausgangsspektrum   ELLIP LP Kaskadiert');
+xlabel ('freq  (Hz)');
+%%
+figure (13);
+% filtered with cascade - filter
 yfftmag =( abs(fft(y_n2 ,Ns )));
 yfftmagh = yfftmag (1: length ( yfftmag )/2);
 % Plot only the first half of FFT , since second half is mirror image
 plot (f, yfftmagh ); % Plot frequency spectrum of input signal
 grid on;
-title (' Ausgangsspektrum   nach   direkter   Filterung ');
+title (' Ausgangsspektrum   CHEBY LP Kaskadiert');
 xlabel ('freq  (Hz)');
+
 %%
-figure (12);
+figure (13);
 % filtered with cascade - filter
-yfftmag =( abs(fft(y_n ,Ns )));
+yfftmag =( abs(fft(y_n3 ,Ns )));
 yfftmagh = yfftmag (1: length ( yfftmag )/2);
 % Plot only the first half of FFT , since second half is mirror image
 plot (f, yfftmagh ); % Plot frequency spectrum of input signal
 grid on;
-title (' Ausgangsspektrum   nach   kaskadierter   Filterung ');
+title (' Ausgangsspektrum   ELLIP HP Kaskadiert');
 xlabel ('freq  (Hz)');
