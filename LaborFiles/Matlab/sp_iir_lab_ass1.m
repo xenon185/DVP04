@@ -417,7 +417,7 @@ figure (11);
 xfftmag =( abs(fft(x_n ,Ns ))); % Compute spectrum of input signal .
 xfftmagh = xfftmag (1: length ( xfftmag )/2);
 % Plot only the first half of FFT , since second half is mirror imag
-f =[1:1: length( xfftmagh )]* fs/Ns; % Make freq array from 0 Hz to Fs /2 Hz.
+f =[1:1: length( xfftmagh )]* Fs/Ns; % Make freq array from 0 Hz to Fs /2 Hz.
 plot (f, xfftmagh ); % Plot frequency spectrum of input signal
 grid on;
 title (' Eingangsspektrum ');
