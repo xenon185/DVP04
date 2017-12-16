@@ -54,24 +54,26 @@ Die Filtercharakteristik Elliptisch, Chebychev sind in der Allgemeinen und in de
 
 \lstinputlisting[style=c, caption={IIR-Filter Matlab Skript}, label={lst:fir_2a_koeff}]{Code/IIR_Filter_koeffizienten.m}
 
-\noindent Koeffizienten der Filtertypen: elliptischer und Chebychev\\
+\noindent Koeffizienten der Filtertypen: Elliptisch und Chebychev\\
 Bei den Koeffizienten ist zu erkennen, dass mit einer elliptischen Implementierung zwei Biquads benötigt werden um die Spezifikationen zu erreichen. Mit der Chebychev Umsetzung werden drei Stages benötigt um diese zu erreichen.\\
 
 
-\lstinputlisting[style=c, caption={IIR-Filter Koeffizienten elliptischer Typ}, label={lst:fir_2a_koeff}]{Code/IIR_ellip_LP.h}
+\lstinputlisting[style=c, caption={IIR-Filter Koeffizienten elliptischer Typ als Tiefpass}, label={lst:fir_2a_koeff}]{Code/IIR_ellip_LP.h}
 
-\lstinputlisting[style=c, caption={IIR-Filter Koeffizienten elliptischer Typ}, label={lst:fir_2a_koeff}]{Code/IIR_cheby1_LP.h}
+\lstinputlisting[style=c, caption={IIR-Filter Koeffizienten elliptischer Typ als Tiefpass}, label={lst:fir_2a_koeff}]{Code/IIR_cheby1_LP.h}
 
 \clearpage
 
 \subsubsection{Attachement B}
+Implementierung eines Hochpassfilters mit elliptischer Filter-Charakteristik. Nachfolgend ist der Amplitudengang und die Filterkoeffizienten dargestellt.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\linewidth]{Bilder/Attachment_B_ELLIP}
-\caption{}
+\caption{IIR-Filter: Chebychev-Filtertyp - Amplitudengang}
 \label{fig:Attachment_B_ELLIP}
 \end{figure}
+
 
 \begin{figure}[h]
 \centering
@@ -80,21 +82,23 @@ Bei den Koeffizienten ist zu erkennen, dass mit einer elliptischen Implementieru
 \label{fig:Attachment_B_ELLIP_KASKADE}
 \end{figure}
 
+\lstinputlisting[style=c, caption={IIR-Filter Koeffizienten elliptischer Typ als Hochpass}, label={lst:fir_2a_koeff}]{Code/IIR_ellip_HP.h}
+
 \clearpage
 
 \subsubsection{Attachement D}
-
+Simulationsergebnisse im Zeitbereich der drei Filter (ellip LP, cheby LP und ellip HP)
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\linewidth]{Bilder/Attachment_D_Eingangszeitsignal}
-\caption{}
+\caption{$X_{n}$ Eingangs-Zeitsignal }
 \label{fig:Attachment_D_Eingangszeitsignal}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\linewidth]{Bilder/Attachment_D_Ausgangssignal_ellip_lp}
-\caption{}
+\caption{$Y_{n}$ Ausgangssignal kaskadierter Ellip-LP}
 \label{fig:Attachment_D_Ausgangssignal_ellip_lp}
 \end{figure}
 
@@ -103,48 +107,55 @@ Bei den Koeffizienten ist zu erkennen, dass mit einer elliptischen Implementieru
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\linewidth]{Bilder/Attachment_D_Ausgangssignal_cheby_lp}
-\caption{}
+\caption{$Y_{n}$ Ausgangssignal kaskadierter Checby-LP}
 \label{fig:Attachment_D_Ausgangssignal_cheby_lp}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\linewidth]{Bilder/Attachment_D_Ausgangssignal_ellip_hp}
-\caption{}
+\caption{$Y_{n}$ Ausgangssignal kaskadierter Ellip-HP}
 \label{fig:Attachment_D_Ausgangssignal_ellip_hp}
 \end{figure}
+
+\noindent Bei den Simulationsergebnissen im Zeitbereich kann die Filtereigenschaften sehr gut nach Tiefpass- und Hochpassverhalten erkannt werden.\\
+Beim Cheby-LP kann im Zeitsignal die stärkere Dämpfung im Sperrband durch eine größere Unterdrückung der hohen Frequenzanteile gegenüber dem Ellip-LP bestätigt werden.
 
 \clearpage
 
 \subsubsection{Attachement E}
-
+Frequenzspektrum der Zeitsignale vor und nach den Filtertypen.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\linewidth]{Bilder/Attachment_E_Eingangsspektrum}
-\caption{}
+\caption{$X_{n}$ Frequenzspektrum des Eingangssignals}
 \label{fig:Attachment_E_Eingangsspektrum}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\linewidth]{Bilder/Attachment_E_ELLIP_LP_Spektrum}
-\caption{}
+\caption{$Y_{n}$ Ausgangs-Frequenzspektrum des kaskadierter Ellip-LP}
 \label{fig:Attachment_E_ELLIP_LP_Spektrum}
 \end{figure}
+
+\newpage
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\linewidth]{Bilder/Attachment_E_CHEBY_LP_Spektrum}
-\caption{}
+\caption{$Y_{n}$ Ausgangs-Frequenzspektrum des kaskadierter Cheby-LP}
 \label{fig:Attachment_E_CHEBY_LP_Spektrum}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\linewidth]{Bilder/Attachment_E_ELLIP_HP_Spektrum}
-\caption{}
+\caption{$Y_{n}$ Ausgangs-Frequenzspektrum des kaskadierter Ellip-HP}
 \label{fig:Attachment_E_ELLIP_HP_Spektrum}
 \end{figure}
+
+\noindent Im Frequenzspektrum ist ebenfalls gut zu erkennen, dass der Cheby-LP eine höhere Sperrdämpfung als der Ellip-LP besitzt.
 
 \clearpage
 
