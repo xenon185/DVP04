@@ -161,12 +161,18 @@ Bei den Koeffizienten ist zu erkennen, dass mit einer elliptischen Implementieru
 \noindent Der linke Ausgang lieferte das mit einem elliptischen TP-Filter gefilterte Eingangssignal (blau), der rechte Ausgang lieferte das mit einem Chebychev-TP-Filter gefilterte Eingangssignal (rot). Ein Frequenzsweep von 0 .. 4kHz wurde für die Messungen durchgeführt. Die Filterrealisierung geschah jeweils über k kaskadierter Biquads zweiter Ordnung. Für das elliptische Filter war k = 2, für Chebychev war k = 3.
 
 \subsubsection{Attachement G}
-
+\noindent Die Unterschiede in der Implementierung ergeben sich eindeutig:
+\begin{itemize}
+	\item Elliptisches Filter: 2 Stufen, somit 2 Biquads
+	\item Chebychev Filter: 3 Stufen, somit 3 Biquads
+\end{itemize}
+\noindent Der Rechenaufwand des Chebychev Tiefpasses ist folglich anderthalb mal so groß wie der des Elliptischen Tiefpasses.
 
 \clearpage
 
 \subsection{Hochpass - Tiefpass - Weichenfilter}
 
+\lstinputlisting[style=c, caption={IIR-Filter Koeffizienten elliptischer Typ}, label={lst:fir_2a_koeff}]{Code/IIR_ellip_LP.h}
 
 \subsection{Modifiziertes elliptisches Tiefpassfilter}
 \subsubsection{Attachement H}
