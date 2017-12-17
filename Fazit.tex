@@ -1,14 +1,18 @@
 \section{Fazit}
 
+Für die IIR-Filter Koeffizienten Bestimmung und Zerlegung der Übertragungsfunktionen in Systeme 2. Ordnung wurde in dieser Versuchsvorbereitung mehr Aufwand benötigt, als zur Bestimmung der Koeffizienten von FIR-Filtern. Bei dem Filterentwurf ist Matlab eine sehr große Hilfe. Es werden viele Funktionen bereitgestellt mit denen: Filter entworfen und analysiert werden können ohne diese in Hardware einbauen zu müssen. IIR Filter müssen stets auf Stabilität geprüft werden. Durch Konvertierung der Koeffizienten kann der Filter schwingen.\\\\
+\noindent Durch die Überführung von Übertragungsfunktionen $H(z)$ in Systeme 2. Ordnung und geschickter Umwandlung in eine Biquad-Form, sind IIR-Filter relativ einfach in einem DSP zu Implementieren. Wichtige Randbedingungen waren unter anderem: Filterkoeffizienten sind zu Normieren, der Allgemeine Verstärkungsfaktor ist auf die führenden Filterkoeffizienten gleichmäßig aufzuteilen und bei Rechenoperationen in den Biquad's muss der Überlauf durch Bit-shifting verhindert werden.\\\\
+In der IIR Biquad Filterimplementierung lässt sich ein Filtertype relativ einfach in eine andere Filterart durch einfügen von Verzögerungen überführen. Durch die Ergänzung von Verzögerungen wird das sich periodisch wiederholende Frequenzspektrum dichter zusammengedrückt, sodass aus einem Tiefpass eine Bandsperre wird.\\\\
+Im Labor wurden zwei Filterentwurfsmodelle implementiert. Je nach Entwurfsmodell steigt die Koeffizienten Anzahl, was dazuführt das mehr Biquad's benötigt werden. Der elliptische Entwurf, benötigt eine geringere Anzahl an Koeffizienten (2x Biquad) und weißt einen sehr geringen Ripple in Passband auf. Beim chebychev Entwurf werden mehr Koeffizienten benötigt, dadurch ist die Sperrbanddämpfung wesentlich stärker als beim elliptischen Entwurf.\\\\
 
-\begin{itemize}
-	\item elliptisch vs. chebychev\\
-	Tabelle\\
-elliptische pro:\\
-- geringer ripple im Passband\\
-- geringer Aufwand: 2x Biquad\\
-chebychev pro\\
-- hohe Dämpfung im Stopband
-	\item Filterentwurfsmethoden: IIR vs FIR
-	\item 
-\end{itemize}
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c | c}
+	FIR & IIR	\\
+	\hline
+	+ einfacher Filterentwurf	&	+ geringere Anzahl an Koeffizienten \\
+	+ Filterimplementierung ist Stabil		&	+ effektive Implementierung mit Biquad's\\
+	- viele Koeffizienten	& - nicht zwingend Stabil\\
+	\end{tabular}
+	\caption{IIR-Filter vs. FIR-Filter}
+\end{table}
